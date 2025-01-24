@@ -1,0 +1,94 @@
+bank={1001:["leela",3672,[28,4,2007],50000],
+     1002:["rupa",5674,[10,9,2002],0],
+     1003:["krupa",None,[5,1,2003],90000],
+     1004:["bavana",5465,[1,7,2001],20000]
+}
+def withdraw():
+  acc_no=int(input("Enter your account number: "))
+  if acc_no not in bank:
+    print("Invalid Number")
+  else:
+    print(f"welcome {bank[acc_no][0]}")
+    pin=int(input("Enter your Pin:"))
+    if pin != bank[acc_no][1]:
+      print("Invalid")
+    else:
+      wd=int(input("amount:"))
+      if wd>bank[acc_no][3]:
+        print("Insufficient Balance")
+      else:
+        bank[acc_no][3]-=wd
+      print("WithDraw Successfull")
+def deposit():
+  acc_no=int(input("Enter your account number: "))
+  if acc_no not in bank:
+    print("Invalid Number")
+  else:
+    print(f"welcome {bank[acc_no][0]}")
+    pin=int(input("Enter your Pin:"))
+    if pin != bank[acc_no][1]:
+      print("Invalid")
+    else:
+      dep=int(input("amount:"))
+      bank[acc_no][3]+=dep
+      print("Deposit Successfull")
+def pin_generation():
+  acc_no=int(input("Enter your account number: "))
+  if acc_no not in bank:
+    print("Invalid Number")
+  else:
+    print(f"welcome {bank[acc_no][0]}")
+    if bank[acc_no][1] != None:
+      print("Pin already Generated")
+    else:
+      print("verify your DOB")
+      day=int(input("Day:"))
+      month=int(input("Month:"))
+      year=int(input("Year:"))
+      if day == bank[acc_no][2][0] and month == bank[acc_no][2][1] and year == bank[acc_no][2][2]:
+        pin=int(input("pin:"))
+        cpin=int(input("cpin:"))
+        pin=cpin
+        print("Pin Generated Successfully")
+      else:
+        print("Invalid")
+def mini_statement():
+  acc_no=int(input("Enter your account number: "))
+  if acc_no not in bank:
+    print("Invalid Number")
+  else:
+    print(f"welcome {bank[acc_no][0]}")
+    pin=int(input("Enter your Pin:"))
+    if pin != bank[acc_no][1]:
+      print("Invalid")
+    else:
+      print(f"Balance: {bank[acc_no][3]}")
+
+while True:
+  print("Enter the required Option")
+  print("1.WithDraw")
+  print("2.Deposit")
+  print("3.Pin")
+  print("4.Mini Statement")
+  print("5.Exit")
+  choice=int(input("choice: "))
+  if choice==1:
+    print("---------WithDraw---------")
+    withdraw()
+    print("--------------------------")
+  elif choice==2:
+    print("---------Deposit---------")
+    deposit()
+    print("--------------------------")
+  elif choice==3:
+    print("---------PinGeneration---------")
+    pin_generation()
+    print("--------------------------")
+  elif choice==4:
+    print("---------MiniStatement---------")
+    mini_statement()
+    print("--------------------------")
+  else:
+    print("Thank you")
+    print("Visit Again")
+    break
